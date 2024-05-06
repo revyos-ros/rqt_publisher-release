@@ -2,49 +2,7 @@
 Changelog for package rqt_publisher
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-1.8.0 (2024-04-26)
-------------------
-
-1.7.2 (2024-03-28)
-------------------
-* Use raw strings for regular expressions. (`#44 <https://github.com/ros-visualization/rqt_publisher/issues/44>`_)
-* Switch maintainer to me. (`#43 <https://github.com/ros-visualization/rqt_publisher/issues/43>`_)
-* Update maintainer list in package.xml files (`#42 <https://github.com/ros-visualization/rqt_publisher/issues/42>`_)
-* Contributors: Chris Lalancette, Michael Jeronimo
-
-1.7.1 (2024-02-07)
-------------------
-* Add in a test dependency on pytest. (`#41 <https://github.com/ros-visualization/rqt_publisher/issues/41>`_)
-* Contributors: Chris Lalancette
-
-1.7.0 (2023-04-28)
-------------------
-
-1.6.3 (2023-04-11)
-------------------
-* Changes the use of __slots_\_ for the field and field type getter
-* Contributors: Michael Jeronimo, Voldivh
-
-1.6.2 (2023-02-14)
-------------------
-* [rolling] Update maintainers - 2022-11-07 (`#36 <https://github.com/ros-visualization/rqt_publisher/issues/36>`_)
-* Contributors: Audrow Nash
-
-1.6.1 (2022-11-02)
-------------------
-* Minor cleanups in rqt_publisher for ROS 2 (`#35 <https://github.com/ros-visualization/rqt_publisher/issues/35>`_)
-* Contributors: Chris Lalancette
-
-1.6.0 (2022-08-02)
-------------------
-* Delete sync to foxy-devel workflow
-* Merge pull request `#33 <https://github.com/ros-visualization/rqt_publisher/issues/33>`_ from NBadyal/improve-evaluation-of-types
-* Use regex matching to strip errors from input
-* Change slot_type verification strategy
-* Mirror rolling to foxy-devel
-* Contributors: Audrow Nash, Geoffrey Biggs, Nicholas Badyal
-
-1.2.0 (2022-05-10)
+1.5.0 (2022-08-02)
 ------------------
 
 1.1.3 (2021-06-29)

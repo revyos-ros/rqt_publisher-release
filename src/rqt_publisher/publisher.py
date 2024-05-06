@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 # Copyright (c) 2011, Dorian Scholz, TU Darmstadt
 # All rights reserved.
 #
@@ -28,11 +30,11 @@
 # ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
+from __future__ import division
 import array
 import math
 import random
 import time
-import re
 
 from python_qt_binding.QtCore import Slot, QSignalMapper, QTimer, qWarning
 
@@ -63,6 +65,7 @@ try:
 except ImportError:
     pass
 
+
 class Publisher(Plugin):
 
     def __init__(self, context):
@@ -85,7 +88,7 @@ class Publisher(Plugin):
         # create context for the expression eval statement
         self._eval_locals = {'i': 0}
         self._eval_locals["now"] = self._get_time
-        for module in (math, random, time, array):
+        for module in (math, random, time):
             self._eval_locals.update(module.__dict__)
         del self._eval_locals['__name__']
         del self._eval_locals['__doc__']
@@ -161,6 +164,9 @@ class Publisher(Plugin):
 
     def _change_publisher_topic(self, publisher_info, topic_name, new_value):
         publisher_info['enabled'] = (new_value and new_value.lower() in ['1', 'true', 'yes'])
+        # qDebug(
+        #   'Publisher._change_publisher_enabled(): %s enabled: %s' %
+        #   (publisher_info['topic_name'], publisher_info['enabled']))
         if publisher_info['enabled'] and publisher_info['rate'] > 0:
             publisher_info['timer'].start(int(1000.0 / publisher_info['rate']))
         else:
@@ -169,25 +175,26 @@ class Publisher(Plugin):
 
     def _change_publisher_type(self, publisher_info, topic_name, new_value):
         type_name = new_value
-        # create new message field
-        field_value = self._create_message_instance(type_name)
+        # create new slot
+        slot_value = self._create_message_instance(type_name)
 
-        # find parent field
-        field_path = topic_name[len(publisher_info['topic_name']):].strip('/').split('/')
-        parent_field = eval('.'.join(["publisher_info['message_instance']"] + field_path[:-1]))
+        # find parent slot
+        slot_path = topic_name[len(publisher_info['topic_name']):].strip('/').split('/')
+        parent_slot = eval('.'.join(["publisher_info['message_instance']"] + slot_path[:-1]))
 
-        # find old message field
-        field_name = field_path[-1]
+        # find old slot
+        slot_name = slot_path[-1]
+        slot_index = parent_slot.__slots__.index(slot_name)
 
         # restore type if user value was invalid
-        if field_value is None:
+        if slot_value is None:
             qWarning('Publisher._change_publisher_type(): could not find type: %s' % (type_name))
-            return parent_field.get_fields_and_field_types()[field_name]
+            return parent_slot._slot_types[slot_index]
 
         else:
-            # replace old message field
-            parent_field.get_fields_and_field_types()[field_name] = type_name
-            setattr(parent_field, field_name, field_value)
+            # replace old slot
+            parent_slot._slot_types[slot_index] = type_name
+            setattr(parent_slot, slot_name, slot_value)
 
             self._widget.publisher_tree_widget.model().update_publisher(publisher_info)
 
@@ -199,6 +206,9 @@ class Publisher(Plugin):
                      (new_value))
         else:
             publisher_info['rate'] = rate
+            # qDebug(
+            #   'Publisher._change_publisher_rate(): %s rate changed: %fHz' %
+            #   (publisher_info['topic_name'], publisher_info['rate']))
             publisher_info['timer'].stop()
             if publisher_info['enabled'] and publisher_info['rate'] > 0:
                 publisher_info['timer'].start(int(1000.0 / publisher_info['rate']))
@@ -206,8 +216,8 @@ class Publisher(Plugin):
         return '%.2f' % publisher_info['rate']
 
     def _change_publisher_expression(self, publisher_info, topic_name, new_value):
-        user_expression = str(new_value)
-        if len(user_expression) == 0:
+        expression = str(new_value)
+        if len(expression) == 0:
             if topic_name in publisher_info['expressions']:
                 del publisher_info['expressions'][topic_name]
                 # qDebug(
@@ -217,60 +227,39 @@ class Publisher(Plugin):
             # Strip topic name from the full topic path
             slot_path = topic_name.replace(publisher_info['topic_name'], '', 1)
             slot_path, slot_array_index = self._extract_array_info(slot_path)
-            slot_type = None
 
-            # strip possible trailing error message from expression
-            contains_error = re.match(r"(.*)\s*# error.*", user_expression)
-            if contains_error:
-                user_expression = contains_error.group(1)
-
-            computed_expression = str(user_expression)
-            # expression can contain topics with indexes, i.e. /chatter[0]
-            # remove index to match message_instance, i.e. /chatter
-            topic_name_includes_index = re.match(r"(.*)\[[0-9]*\]$", topic_name)
-            if topic_name_includes_index:
-                topic_name = topic_name_includes_index.group(1)
-
-            # static sequences change one item at a time, impossible to validate
-            # handle as entire sequence, enables validation
+            # Get the property type from the message class
+            slot_type, is_array = \
+                get_slot_type(publisher_info['message_instance'].__class__, slot_path)
             if slot_array_index is not None:
-                # remove first '/'
-                slot_array = \
-                    self._extract_slot_array(slot_path[1:].split('/'), publisher_info['message_instance'])
-                slot_type = slot_array.__class__
-                # quotes from gui are still present, remove them
-                includes_quotes = re.match(r'^\s*[\'|\"](.*)[\'|\"]\s*$', computed_expression)
-                if includes_quotes:
-                    computed_expression = includes_quotes.group(1)
-                # try to insert expression
-                try:
-                    slot_array[slot_array_index] = computed_expression
-                except Exception as e:
-                    return '%s # error: %s' % (user_expression, e)
-                # expression is now full sequence
-                computed_expression = slot_array
+                is_array = False
 
-            # determine the property type, supplemental wrapper for get_slot_type()
-            slot_type = \
-                self._resolve_slot_type(computed_expression, slot_type, slot_path, publisher_info['message_instance'].__class__)
-            success, _ = self._evaluate_expression(computed_expression, slot_type)
+            if is_array:
+                slot_type = list
+            # strip possible trailing error message from expression
+            error_prefix = '# error'
+            error_prefix_pos = expression.find(error_prefix)
+            if error_prefix_pos >= 0:
+                expression = expression[:error_prefix_pos]
+            success, _ = self._evaluate_expression(expression, slot_type)
             if success:
                 old_expression = publisher_info['expressions'].get(topic_name, None)
-                publisher_info['expressions'][topic_name] = computed_expression
+                publisher_info['expressions'][topic_name] = expression
                 try:
                     self._fill_message_slots(
                         publisher_info['message_instance'], publisher_info['topic_name'],
                         publisher_info['expressions'], publisher_info['counter'])
+
                 except Exception as e:
                     if old_expression is not None:
                         publisher_info['expressions'][topic_name] = old_expression
                     else:
                         del publisher_info['expressions'][topic_name]
-                    return '%s # error: %s' % (user_expression, e)
-                return user_expression
+                    return '%s %s: %s' % (expression, error_prefix, e)
+                return expression
             else:
-                return '%s # error evaluating as "%s"' % (
-                    user_expression, slot_type.__name__)
+                return '%s %s evaluating as "%s"' % (
+                    expression, error_prefix, slot_type.__name__)
 
     def _extract_array_info(self, type_str):
         array_size = None
@@ -283,37 +272,6 @@ class Publisher(Plugin):
                 array_size = 0
 
         return type_str, array_size
-
-    def _extract_slot_array(self, slot_paths, slot_array):
-        if len(slot_paths) == 0:
-            return slot_array
-        slot_array_name = '_' + slot_paths[0]
-        slot_array = getattr(slot_array, slot_array_name)
-        return self._extract_slot_array(slot_paths[1:], slot_array)
-
-    def _resolve_slot_type(self, expression, slot_type, slot_path, message_class):
-        if slot_type is None:
-            # check for types that get_slot_type doesn't handle well
-            # check for array.array type
-            is_array_array = re.search(r"^array\(\'.\', (\[.*\])\)", expression)
-            if is_array_array:
-                return array.array
-
-            # check for list type
-            is_list = re.match(r"^\[.*\]\s*$", expression)
-            if is_list:
-                return list
-
-            # check for string type
-            is_string = re.match(r"^\'.*\'\s*$", expression)
-            if is_string:
-                return str
-
-            # at this point, get_slot_type can determine the type
-            slot_type, _ = \
-                get_slot_type(message_class, slot_path)
-
-        return slot_type
 
     def _create_message_instance(self, type_str):
         base_type_str, array_size = self._extract_array_info(type_str)
@@ -345,10 +303,7 @@ class Publisher(Plugin):
         successful_eval = True
         try:
             # try to evaluate expression
-            if isinstance(expression, str):
-                value = eval(expression, {}, self._eval_locals)
-            else:
-                value = expression
+            value = eval(expression, {}, self._eval_locals)
         except Exception as e:
             qWarning('Python eval failed for expression "{}"'.format(expression) +
                      ' with an exception "{}"'.format(e))
@@ -369,8 +324,7 @@ class Publisher(Plugin):
             # slot_type
             if type_set <= set(_list_types) or type_set <= set(_numeric_types):
                 # convert to the right type
-                if slot_type is not numpy.ndarray and slot_type is not array.array:
-                    value = slot_type(value)
+                value = slot_type(value)
 
         if successful_eval and isinstance(value, slot_type):
             return True, value
@@ -383,11 +337,13 @@ class Publisher(Plugin):
     def _fill_message_slots(self, message, topic_name, expressions, counter):
         global _list_types
         if topic_name in expressions and len(expressions[topic_name]) > 0:
+
             # get type
             if hasattr(message, '_type'):
                 message_type = message._type
             else:
                 message_type = type(message)
+
             self._eval_locals['i'] = counter
             success, value = self._evaluate_expression(expressions[topic_name], message_type)
             if not success:
@@ -403,7 +359,6 @@ class Publisher(Plugin):
                 if value is not None:
                     setattr(message, slot_name, value)
 
-        # This does not validate the entry because it tries to check each element and not whole list
         elif type(message) in _list_types and (len(message) > 0):
             for index, slot in enumerate(message):
                 value = self._fill_message_slots(
@@ -411,6 +366,7 @@ class Publisher(Plugin):
                 # this deals with primitive-type arrays
                 if not hasattr(message[0], '__slots__') and value is not None:
                     message[index] = value
+
         return None
 
     @Slot(int)
