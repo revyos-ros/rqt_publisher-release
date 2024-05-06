@@ -136,7 +136,7 @@ tracks:
     last_version: 1.5.0
     name: rqt_publisher
     patches: null
-    release_inc: '1'
+    release_inc: '2'
     release_repo_url: git@github.com:revyos-ros/rqt_publisher-release.git
     release_tag: :{version}
     ros_distro: humble
