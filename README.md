@@ -1,3 +1,26 @@
+## rqt_publisher (jazzy) - 1.7.2-3
+
+The packages in the `rqt_publisher` repository were released into the `jazzy` distro by running `/home/z572/gits/revyos-ros/venv/bin/bloom-release -r jazzy rqt_publisher --override-release-repository-push-url git@github.com:revyos-ros/rqt_publisher-release` on `Mon, 24 Jun 2024 07:48:54 -0000`
+
+The `rqt_publisher` package was released.
+
+Version of package(s) in repository `rqt_publisher`:
+
+- upstream repository: https://github.com/ros-visualization/rqt_publisher.git
+- release repository: https://github.com/revyos-ros/rqt_publisher-release.git
+- rosdistro version: `1.7.2-2`
+- old version: `1.7.2-2`
+- new version: `1.7.2-3`
+
+Versions of tools used:
+
+- bloom version: `0.12.0`
+- catkin_pkg version: `1.0.0`
+- rosdep version: `0.22.2`
+- rosdistro version: `0.9.0`
+- vcstools version: `0.1.42`
+
+
 ## rqt_publisher (humble) - 1.5.0-2
 
 The packages in the `rqt_publisher` repository were released into the `humble` distro by running `/home/z572/gits/revyos-ros/venv/bin/bloom-release -r humble rqt_publisher` on `Mon, 06 May 2024 06:52:06 -0000`
