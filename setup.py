@@ -4,7 +4,7 @@ package_name = 'rqt_publisher'
 
 setup(
     name=package_name,
-    version='1.5.0',
+    version='1.7.2',
     packages=[package_name],
     package_dir={'': 'src'},
     data_files=[
@@ -18,8 +18,8 @@ setup(
     install_requires=['setuptools'],
     zip_safe=True,
     author='Dorian Scholz',
-    maintainer='Dirk Thomas, Dorian Scholz',
-    maintainer_email='dthomas@osrfoundation.org',
+    maintainer='Michael Jeronimo',
+    maintainer_email='michael.jeronimo@openrobotics.org',
     keywords=['ROS'],
     classifiers=[
         'Intended Audience :: Developers',
@@ -31,6 +31,7 @@ setup(
         'A Python GUI plugin publishing ROS messages.'
     ),
     license='BSD',
+    tests_require=['pytest'],
     entry_points={
         'console_scripts': [
             'rqt_publisher = ' + package_name + '.main:main',
