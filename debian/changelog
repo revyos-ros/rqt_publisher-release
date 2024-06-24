@@ -1,0 +1,368 @@
+ros-jazzy-rqt-publisher (1.7.2-3bookworm) bookworm; urgency=high
+
+  * Use raw strings for regular expressions. (#44 <https://github.com/ros-visualization/rqt_publisher/issues/44>)
+  * Switch maintainer to me. (#43 <https://github.com/ros-visualization/rqt_publisher/issues/43>)
+  * Update maintainer list in package.xml files (#42 <https://github.com/ros-visualization/rqt_publisher/issues/42>)
+  * Contributors: Chris Lalancette, Michael Jeronimo
+
+ -- Chris Lalancette <clalancette@gmail.com>  Wed, 27 Mar 2024 16:00:00 -0000
+
+ros-jazzy-rqt-publisher (1.7.1-3bookworm) bookworm; urgency=high
+
+  * Add in a test dependency on pytest. (#41 <https://github.com/ros-visualization/rqt_publisher/issues/41>)
+  * Contributors: Chris Lalancette
+
+ -- Michael Jeronimo <michael.jeronimo@openrobotics.org>  Tue, 06 Feb 2024 16:00:00 -0000
+
+ros-jazzy-rqt-publisher (1.7.0-3bookworm) bookworm; urgency=high
+
+
+
+ -- Michael Jeronimo <michael.jeronimo@openrobotics.org>  Thu, 27 Apr 2023 16:00:00 -0000
+
+ros-jazzy-rqt-publisher (1.6.3-3bookworm) bookworm; urgency=high
+
+  * Changes the use of __slots__ for the field and field type getter
+  * Contributors: Michael Jeronimo, Voldivh
+
+ -- Michael Jeronimo <michael.jeronimo@openrobotics.org>  Mon, 10 Apr 2023 16:00:00 -0000
+
+ros-jazzy-rqt-publisher (1.6.2-3bookworm) bookworm; urgency=high
+
+  * [rolling] Update maintainers - 2022-11-07 (#36 <https://github.com/ros-visualization/rqt_publisher/issues/36>)
+  * Contributors: Audrow Nash
+
+ -- Michael Jeronimo <michael.jeronimo@openrobotics.org>  Mon, 13 Feb 2023 16:00:00 -0000
+
+ros-jazzy-rqt-publisher (1.6.1-3bookworm) bookworm; urgency=high
+
+  * Minor cleanups in rqt_publisher for ROS 2 (#35 <https://github.com/ros-visualization/rqt_publisher/issues/35>)
+  * Contributors: Chris Lalancette
+
+ -- Michael Jeronimo <michael.jeronimo@openrobotics.org>  Tue, 01 Nov 2022 16:00:00 -0000
+
+ros-jazzy-rqt-publisher (1.6.0-3bookworm) bookworm; urgency=high
+
+  * Delete sync to foxy-devel workflow
+  * Merge pull request #33 <https://github.com/ros-visualization/rqt_publisher/issues/33> from NBadyal/improve-evaluation-of-types
+  * Use regex matching to strip errors from input
+  * Change slot_type verification strategy
+  * Mirror rolling to foxy-devel
+  * Contributors: Audrow Nash, Geoffrey Biggs, Nicholas Badyal
+
+ -- Michael Jeronimo <michael.jeronimo@openrobotics.org>  Mon, 01 Aug 2022 16:00:00 -0000
+
+ros-jazzy-rqt-publisher (1.2.0-3bookworm) bookworm; urgency=high
+
+
+
+ -- Michael Jeronimo <michael.jeronimo@openrobotics.org>  Mon, 09 May 2022 16:00:00 -0000
+
+ros-jazzy-rqt-publisher (1.1.3-3bookworm) bookworm; urgency=high
+
+  * Fix: Do not ignore field values introduced by the user. (#28 <https://github.com/ros-visualization/rqt_publisher/issues/28>)
+  * Fix modern setuptools warning about dashes instead of underscores. (#29 <https://github.com/ros-visualization/rqt_publisher/issues/29>)
+  * Contributors: Chris Lalancette, coalman321
+
+ -- Michael Jeronimo <michael.jeronimo@openrobotics.org>  Mon, 28 Jun 2021 16:00:00 -0000
+
+ros-jazzy-rqt-publisher (1.1.2-3bookworm) bookworm; urgency=high
+
+  * Changed the build type to ament_python and fixed package to run with ros2 run (#18 <https://github.com/ros-visualization/rqt_publisher/issues/18>)
+  * Drop numpy.float128 references (#26 <https://github.com/ros-visualization/rqt_publisher/issues/26>)
+  * Contributors: Alejandro Hernández Cordero, Michel Hidalgo
+
+ -- Michael Jeronimo <michael.jeronimo@openrobotics.org>  Mon, 26 Apr 2021 16:00:00 -0000
+
+ros-jazzy-rqt-publisher (1.1.1-3bookworm) bookworm; urgency=high
+
+  * Use rosidl_runtime_py instead of rqt_py_common where possible (#24 <https://github.com/ros-visualization/rqt_publisher/issues/24>)
+  * Add now() to evaluation (#22 <https://github.com/ros-visualization/rqt_publisher/issues/22>)
+  * Contributors: Ivan Santiago Paunovic, Yossi Ovcharik
+
+ -- Michael Jeronimo <michael.jeronimo@openrobotics.org>  Mon, 15 Mar 2021 16:00:00 -0000
+
+ros-jazzy-rqt-publisher (1.1.0-3bookworm) bookworm; urgency=high
+
+  * fix setting expressions on sequence items (#16 <https://github.com/ros-visualization/rqt_publisher/issues/16>)
+
+ -- Michael Jeronimo <michael.jeronimo@openrobotics.org>  Wed, 02 Oct 2019 16:00:00 -0000
+
+ros-jazzy-rqt-publisher (1.0.3-3bookworm) bookworm; urgency=high
+
+  * Prepending node namespace to relative topics and adding validation for topic names (#7 <https://github.com/ros-visualization/rqt_publisher/issues/7>)
+  * Contributors: brawner
+
+ -- Michael Jeronimo <michael.jeronimo@openrobotics.org>  Wed, 12 Dec 2018 16:00:00 -0000
+
+ros-jazzy-rqt-publisher (1.0.2-3bookworm) bookworm; urgency=high
+
+  * fix cleaning up publisher on shutdown (#6 <https://github.com/ros-visualization/rqt_publisher/issues/6>)
+
+ -- Michael Jeronimo <michael.jeronimo@openrobotics.org>  Tue, 11 Dec 2018 16:00:00 -0000
+
+ros-jazzy-rqt-publisher (1.0.1-3bookworm) bookworm; urgency=high
+
+  * destroy publishers on removal (#4 <https://github.com/ros-visualization/rqt_publisher/issues/4>)
+  * Contributors: Mike Lautman
+
+ -- Michael Jeronimo <michael.jeronimo@openrobotics.org>  Tue, 11 Dec 2018 16:00:00 -0000
+
+ros-jazzy-rqt-publisher (1.0.0-3bookworm) bookworm; urgency=high
+
+  * Port to ROS2 (#2 <https://github.com/ros-visualization/rqt_publisher/issues/2>)
+  * autopep8 (#1 <https://github.com/ros-visualization/rqt_publisher/issues/1>)
+  * Contributors: Mike Lautman, brawner
+
+ -- Michael Jeronimo <michael.jeronimo@openrobotics.org>  Mon, 10 Dec 2018 16:00:00 -0000
+
+ros-jazzy-rqt-publisher (0.4.8-3bookworm) bookworm; urgency=high
+
+
+
+ -- Michael Jeronimo <michael.jeronimo@openrobotics.org>  Sun, 23 Apr 2017 16:00:00 -0000
+
+ros-jazzy-rqt-publisher (0.4.7-3bookworm) bookworm; urgency=high
+
+
+
+ -- Michael Jeronimo <michael.jeronimo@openrobotics.org>  Wed, 01 Mar 2017 16:00:00 -0000
+
+ros-jazzy-rqt-publisher (0.4.6-3bookworm) bookworm; urgency=high
+
+
+
+ -- Michael Jeronimo <michael.jeronimo@openrobotics.org>  Sun, 26 Feb 2017 16:00:00 -0000
+
+ros-jazzy-rqt-publisher (0.4.5-3bookworm) bookworm; urgency=high
+
+
+
+ -- Michael Jeronimo <michael.jeronimo@openrobotics.org>  Thu, 02 Feb 2017 16:00:00 -0000
+
+ros-jazzy-rqt-publisher (0.4.4-3bookworm) bookworm; urgency=high
+
+  * use Python 3 compatible syntax (#421 <https://github.com/ros-visualization/rqt_common_plugins/pull/421>)
+
+ -- Michael Jeronimo <michael.jeronimo@openrobotics.org>  Mon, 23 Jan 2017 16:00:00 -0000
+
+ros-jazzy-rqt-publisher (0.4.3-3bookworm) bookworm; urgency=high
+
+
+
+ -- Michael Jeronimo <michael.jeronimo@openrobotics.org>  Tue, 01 Nov 2016 16:00:00 -0000
+
+ros-jazzy-rqt-publisher (0.4.2-3bookworm) bookworm; urgency=high
+
+  * use checkbox for boolean types (#372 <https://github.com/ros-visualization/rqt_common_plugins/issues/372>)
+
+ -- Michael Jeronimo <michael.jeronimo@openrobotics.org>  Sun, 18 Sep 2016 16:00:00 -0000
+
+ros-jazzy-rqt-publisher (0.4.1-3bookworm) bookworm; urgency=high
+
+
+
+ -- Michael Jeronimo <michael.jeronimo@openrobotics.org>  Sun, 15 May 2016 16:00:00 -0000
+
+ros-jazzy-rqt-publisher (0.4.0-3bookworm) bookworm; urgency=high
+
+  * Support Qt 5 (in Kinetic and higher) as well as Qt 4 (in Jade and earlier) (#359 <https://github.com/ros-visualization/rqt_common_plugins/pull/359>)
+
+ -- Michael Jeronimo <michael.jeronimo@openrobotics.org>  Tue, 26 Apr 2016 16:00:00 -0000
+
+ros-jazzy-rqt-publisher (0.3.13-3bookworm) bookworm; urgency=high
+
+  * fixed rqt_publisher plugin to fill message slots for individual fields of primitive arrays
+  * use proper icon names for add/remove
+  * Contributors: Robert Haschke, Vincent Rabaud
+
+ -- Michael Jeronimo <michael.jeronimo@openrobotics.org>  Mon, 07 Mar 2016 16:00:00 -0000
+
+ros-jazzy-rqt-publisher (0.3.12-3bookworm) bookworm; urgency=high
+
+
+
+ -- Michael Jeronimo <michael.jeronimo@openrobotics.org>  Thu, 23 Jul 2015 16:00:00 -0000
+
+ros-jazzy-rqt-publisher (0.3.11-3bookworm) bookworm; urgency=high
+
+
+
+ -- Michael Jeronimo <michael.jeronimo@openrobotics.org>  Wed, 29 Apr 2015 16:00:00 -0000
+
+ros-jazzy-rqt-publisher (0.3.10-3bookworm) bookworm; urgency=high
+
+  * update plugin scripts to use full name to avoid future naming collisions
+
+ -- Michael Jeronimo <michael.jeronimo@openrobotics.org>  Tue, 30 Sep 2014 16:00:00 -0000
+
+ros-jazzy-rqt-publisher (0.3.9-3bookworm) bookworm; urgency=high
+
+
+
+ -- Michael Jeronimo <michael.jeronimo@openrobotics.org>  Sun, 17 Aug 2014 16:00:00 -0000
+
+ros-jazzy-rqt-publisher (0.3.8-3bookworm) bookworm; urgency=high
+
+
+
+ -- Michael Jeronimo <michael.jeronimo@openrobotics.org>  Mon, 14 Jul 2014 16:00:00 -0000
+
+ros-jazzy-rqt-publisher (0.3.7-3bookworm) bookworm; urgency=high
+
+  * fix compatibility with Groovy, use queue_size for Python publishers only when available (#243 <https://github.com/ros-visualization/rqt_common_plugins/issues/243>)
+  * export architecture_independent flag in package.xml (#254 <https://github.com/ros-visualization/rqt_common_plugins/issues/254>)
+
+ -- Michael Jeronimo <michael.jeronimo@openrobotics.org>  Thu, 10 Jul 2014 16:00:00 -0000
+
+ros-jazzy-rqt-publisher (0.3.6-3bookworm) bookworm; urgency=high
+
+  * use queue_size for Python publishers
+
+ -- Michael Jeronimo <michael.jeronimo@openrobotics.org>  Sun, 01 Jun 2014 16:00:00 -0000
+
+ros-jazzy-rqt-publisher (0.3.5-3bookworm) bookworm; urgency=high
+
+
+
+ -- Michael Jeronimo <michael.jeronimo@openrobotics.org>  Tue, 06 May 2014 16:00:00 -0000
+
+ros-jazzy-rqt-publisher (0.3.4-3bookworm) bookworm; urgency=high
+
+
+
+ -- Michael Jeronimo <michael.jeronimo@openrobotics.org>  Mon, 27 Jan 2014 16:00:00 -0000
+
+ros-jazzy-rqt-publisher (0.3.3-3bookworm) bookworm; urgency=high
+
+  * add groups for rqt plugins, renamed some plugins (#167 <https://github.com/ros-visualization/rqt_common_plugins/issues/167>)
+
+ -- Michael Jeronimo <michael.jeronimo@openrobotics.org>  Tue, 07 Jan 2014 16:00:00 -0000
+
+ros-jazzy-rqt-publisher (0.3.2-3bookworm) bookworm; urgency=high
+
+  * fix regression of 0.3.1 (rospack not defined)
+
+ -- Michael Jeronimo <michael.jeronimo@openrobotics.org>  Sun, 13 Oct 2013 16:00:00 -0000
+
+ros-jazzy-rqt-publisher (0.3.1-3bookworm) bookworm; urgency=high
+
+  * improve performance to fill combo box with message types (#177 <https://github.com/ros-visualization/rqt_common_plugins/issues/177>)
+
+ -- Michael Jeronimo <michael.jeronimo@openrobotics.org>  Tue, 08 Oct 2013 16:00:00 -0000
+
+ros-jazzy-rqt-publisher (0.3.0-3bookworm) bookworm; urgency=high
+
+
+
+ -- Michael Jeronimo <michael.jeronimo@openrobotics.org>  Tue, 27 Aug 2013 16:00:00 -0000
+
+ros-jazzy-rqt-publisher (0.2.17-3bookworm) bookworm; urgency=high
+
+
+
+ -- Michael Jeronimo <michael.jeronimo@openrobotics.org>  Wed, 03 Jul 2013 16:00:00 -0000
+
+ros-jazzy-rqt-publisher (0.2.16-3bookworm) bookworm; urgency=high
+
+
+
+ -- Michael Jeronimo <michael.jeronimo@openrobotics.org>  Tue, 09 Apr 2013 05:33:00 -0000
+
+ros-jazzy-rqt-publisher (0.2.15-3bookworm) bookworm; urgency=high
+
+
+
+ -- Michael Jeronimo <michael.jeronimo@openrobotics.org>  Mon, 08 Apr 2013 16:02:00 -0000
+
+ros-jazzy-rqt-publisher (0.2.14-3bookworm) bookworm; urgency=high
+
+
+
+ -- Michael Jeronimo <michael.jeronimo@openrobotics.org>  Wed, 13 Mar 2013 16:00:00 -0000
+
+ros-jazzy-rqt-publisher (0.2.13-3bookworm) bookworm; urgency=high
+
+
+
+ -- Michael Jeronimo <michael.jeronimo@openrobotics.org>  Mon, 11 Mar 2013 14:14:00 -0000
+
+ros-jazzy-rqt-publisher (0.2.12-3bookworm) bookworm; urgency=high
+
+
+
+ -- Michael Jeronimo <michael.jeronimo@openrobotics.org>  Mon, 11 Mar 2013 05:56:00 -0000
+
+ros-jazzy-rqt-publisher (0.2.11-3bookworm) bookworm; urgency=high
+
+
+
+ -- Michael Jeronimo <michael.jeronimo@openrobotics.org>  Thu, 07 Mar 2013 16:00:00 -0000
+
+ros-jazzy-rqt-publisher (0.2.10-3bookworm) bookworm; urgency=high
+
+
+
+ -- Michael Jeronimo <michael.jeronimo@openrobotics.org>  Mon, 21 Jan 2013 16:00:00 -0000
+
+ros-jazzy-rqt-publisher (0.2.9-3bookworm) bookworm; urgency=high
+
+
+
+ -- Michael Jeronimo <michael.jeronimo@openrobotics.org>  Wed, 16 Jan 2013 16:00:00 -0000
+
+ros-jazzy-rqt-publisher (0.2.8-3bookworm) bookworm; urgency=high
+
+
+
+ -- Michael Jeronimo <michael.jeronimo@openrobotics.org>  Thu, 10 Jan 2013 16:00:00 -0000
+
+ros-jazzy-rqt-publisher (0.2.7-3bookworm) bookworm; urgency=high
+
+
+
+ -- Michael Jeronimo <michael.jeronimo@openrobotics.org>  Sun, 23 Dec 2012 16:00:00 -0000
+
+ros-jazzy-rqt-publisher (0.2.6-3bookworm) bookworm; urgency=high
+
+
+
+ -- Michael Jeronimo <michael.jeronimo@openrobotics.org>  Sat, 22 Dec 2012 16:00:00 -0000
+
+ros-jazzy-rqt-publisher (0.2.5-3bookworm) bookworm; urgency=high
+
+
+
+ -- Michael Jeronimo <michael.jeronimo@openrobotics.org>  Fri, 21 Dec 2012 11:11:00 -0000
+
+ros-jazzy-rqt-publisher (0.2.4-3bookworm) bookworm; urgency=high
+
+
+
+ -- Michael Jeronimo <michael.jeronimo@openrobotics.org>  Thu, 20 Dec 2012 17:13:00 -0000
+
+ros-jazzy-rqt-publisher (0.2.3-3bookworm) bookworm; urgency=high
+
+
+
+ -- Michael Jeronimo <michael.jeronimo@openrobotics.org>  Thu, 20 Dec 2012 16:24:00 -0000
+
+ros-jazzy-rqt-publisher (0.2.2-3bookworm) bookworm; urgency=high
+
+
+
+ -- Michael Jeronimo <michael.jeronimo@openrobotics.org>  Thu, 20 Dec 2012 10:29:00 -0000
+
+ros-jazzy-rqt-publisher (0.2.1-3bookworm) bookworm; urgency=high
+
+
+
+ -- Michael Jeronimo <michael.jeronimo@openrobotics.org>  Thu, 20 Dec 2012 09:47:00 -0000
+
+ros-jazzy-rqt-publisher (0.2.0-3bookworm) bookworm; urgency=high
+
+  * first release of this package into groovy
+
+ -- Michael Jeronimo <michael.jeronimo@openrobotics.org>  Thu, 20 Dec 2012 09:39:00 -0000
+
+
